@@ -3,10 +3,15 @@ import PlayVideo from "./modules/playVideo";
 import MiniSlider from "./modules/slider/slider-mini";
 import Difference from "./modules/difference";
 import Form from "./modules/form"
+import Accordion from "./modules/accordion";
+import Download from "./modules/download";
 
 window.addEventListener('DOMContentLoaded', () => {
   const slider = new MainSlider({container: '.page', btns: '.next'});
   slider.render();
+
+  const modulePageSlider = new MainSlider({container: '.moduleapp', btns: '.next', prevList: '.prevmodule', nextList: '.nextmodule'});
+  modulePageSlider.render();
 
   const showUpSlider = new MiniSlider({
     container: '.showup__content-slider',
@@ -35,9 +40,13 @@ window.addEventListener('DOMContentLoaded', () => {
   });
   feedSlider.init();
 
-  const player = new PlayVideo('.showup .play', '.overlay');
-  player.init();
+  new PlayVideo('.showup .play', '.overlay').init();
+  new PlayVideo('.module__video-item .play', '.overlay').init();
 
   new Difference('.officerold', '.officernew', '.officer__card-item').init();
   new Form('.form').init();
+
+  new Accordion('.module__info-show').init();
+
+  new Download('.download').init();
 });
